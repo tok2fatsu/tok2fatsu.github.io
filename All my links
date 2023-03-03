@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=""UTf-8">
+    <title>
+        ALL My Links
+    </title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+
+        header{
+            background-color: #ffff; height: 70px; width: 100%;
+        }
+
+        footer{
+            background-color: #ffff;
+            height: 60px; width: 100%;
+            position: absolute;
+            bottom: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    </head>
+    <body>
+        <background-image>
+            <source>
+        </background-image> 
+</html>

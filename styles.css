@@ -1,0 +1,49 @@
+html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    font-family: sans-serif;
+    background-image: url("src/rodion-kutsaiev-pVoEPpLw818-unsplash.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    display: flexbox;
+    margin: 50px auto;
+    text-align: center !important;
+}
+
+.profile-pic {
+    border-radius: 50%;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.bio {
+    text-align: center;
+    color: #fff;
+}
+
+.Social_btn {
+    display: inline-block;
+    background-color: transparent;
+    padding: 10px;
+    margin: 0 20px;
+    border-radius: 6px;
+    color: #000;
+}
+
+.Social_btn:hover {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    size: 50px;
+}
+
+h1 {
+    text-align: center;
+}
