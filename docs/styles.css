@@ -6,6 +6,7 @@ html {
 
 body {
     font-family: sans-serif;
+    text-decoration: none;
     background-image: url("src/smoke\ paint.jpeg"); 
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,10 +24,7 @@ main {
 .profile-pic {
     border-radius: 50%;
     margin: 0 auto;
-    color: #fff;
-    animation: rotate infinite 1s 1s 1s rotateX(360deg) alternate;
-    
-
+    color: #fff
 }
 
 .bio {
@@ -147,12 +145,13 @@ h1 {
   position: relative;
   padding: 1em 2em;
   border: 0;
-  text-decoration: none;
   background-color: transparent;
   font-family: "Roboto", Arial, "Segoe UI", sans-serif;
   font-size: 18px;
-  font-weight: 500;
-  color: #000000;
+  font-weight: 900;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
   z-index: 2;
  }
  
@@ -183,6 +182,7 @@ h1 {
   -webkit-mask-clip: var(--m-o);
   mask-composite: exclude;
   -webkit-mask-composite: destination-out;
+  text-decoration: none;
   filter: hue-rotate(0);
   animation: rotate-hue linear 500ms infinite;
   animation-play-state: paused;
@@ -191,6 +191,7 @@ h1 {
  .hop:hover::after {
   animation-play-state: running;
   zoom: 200%;
+  text-decoration: none;
  }
  
  @keyframes rotate-hue {
