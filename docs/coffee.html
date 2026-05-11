@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ጥርኝ — Premium Ethiopian Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --espresso: #1a0c06;
+            --deep-brown: #2c1810;
+            --warm-brown: #5c3a21;
+            --tan: #8b6e4e;
+            --gold: #c8a45c;
+            --gold-light: #d4af6e;
+            --gold-bright: #e2c278;
+            --cream: #f5f0e8;
+            --cream-dark: #e8dcc8;
+            --off-white: #faf7f2;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a3f35;
+            --text-light: #8a7a6a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--espresso);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--espresso);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ─── NAVIGATION ─────────────────────── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            background: rgba(26, 12, 6, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 0.8rem 3rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-brand {
+            font-family: 'Noto Serif Ethiopic', 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--cream);
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-brand .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: inline-block;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s;
+            padding: 0.3rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--espresso) !important;
+            padding: 0.55rem 1.5rem !important;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            transition: all 0.3s !important;
+            letter-spacing: 0.03em !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold-bright) !important;
+            color: var(--espresso) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(200, 164, 92, 0.35);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            padding: 5px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--cream);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ─── HERO SECTION ──────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(160deg, #0d0502 0%, #1a0c06 30%, #2c1810 60%, #1a0c06 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 164, 92, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 164, 92, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 6rem 3rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            padding-right: 1rem;
+        }
+        .hero-eyebrow {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(200, 164, 92, 0.3);
+            border-radius: 30px;
+        }
+        .hero-title {
+            font-family: 'Noto Serif Ethiopic', 'Playfair Display', serif;
+            font-size: clamp(3.2rem, 6vw, 5.5rem);
+            font-weight: 700;
+            color: var(--cream);
+            line-height: 1.05;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+        .hero-title .highlight {
+            color: var(--gold);
+            position: relative;
+        }
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--cream-dark);
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+        }
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2rem;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--espresso);
+            box-shadow: 0 4px 20px rgba(200, 164, 92, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--gold-bright);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(200, 164, 92, 0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--cream);
+            border: 1.5px solid rgba(245, 240, 232, 0.4);
+        }
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            background: rgba(200, 164, 92, 0.08);
+        }
+        .btn-arrow {
+            transition: transform 0.3s;
+        }
+        .btn:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* 3D Canvas Container */
+        .hero-3d-container {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            cursor: grab;
+            border-radius: 24px;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(44, 24, 16, 0.5) 0%, transparent 70%);
+        }
+        .hero-3d-container:active {
+            cursor: grabbing;
+        }
+        .hero-3d-container canvas {
+            display: block;
+        }
+        .hero-3d-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.5);
+            pointer-events: none;
+            animation: hintFade 3s ease-in-out infinite;
+        }
+        @keyframes hintFade {
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(245, 240, 232, 0.5);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(200, 164, 92, 0.6), transparent);
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ─── SECTION COMMONS ──────────────── */
+        .section {
+            padding: 7rem 3rem;
+        }
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--espresso);
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+        .section-subtitle {
+            font-size: 1rem;
+            color: var(--text-medium);
+            max-width: 550px;
+            line-height: 1.7;
+        }
+
+        /* ─── PRODUCTS SECTION ─────────────── */
+        .products-section {
+            background: var(--white);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+        .product-card {
+            background: var(--off-white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border-color: rgba(200, 164, 92, 0.3);
+        }
+        .product-card-image {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card-image .gradient-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .product-card:hover .gradient-bg {
+            transform: scale(1.08);
+        }
+        .product-card-image .overlay-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--espresso);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+        }
+        .product-card-body {
+            padding: 1.5rem 1.5rem 1.8rem;
+        }
+        .product-card-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--espresso);
+            margin-bottom: 0.3rem;
+        }
+        .product-card-body .origin {
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+        }
+        .product-card-body .notes {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+        .product-card-body .tasting-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .tasting-tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            background: rgba(200, 164, 92, 0.1);
+            color: var(--warm-brown);
+            font-weight: 500;
+            letter-spacing: 0.03em;
+        }
+
+        /* Gradient backgrounds for product cards */
+        .bg-yirgacheffe {
+            background: linear-gradient(135deg, #3a5a40 0%, #588157 30%, #a3b18a 70%, #dad7cd 100%);
+        }
+        .bg-sidamo {
+            background: linear-gradient(135deg, #5c3a21 0%, #8b5e3c 30%, #c4a882 70%, #e0d3c3 100%);
+        }
+        .bg-harrar {
+            background: linear-gradient(135deg, #3d1c00 0%, #6b3a1f 30%, #b8845c 70%, #dcc8a8 100%);
+        }
+        .bg-limu {
+            background: linear-gradient(135deg, #2c1810 0%, #4a3020 30%, #9b7b5c 70%, #d4c4a8 100%);
+        }
+
+        /* ─── ABOUT SECTION ────────────────── */
+        .about-section {
+            background: var(--off-white);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -150px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 164, 92, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .about-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .about-stat-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s;
+        }
+        .about-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+        }
+        .about-stat-card .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .about-stat-card .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            margin-top: 0.5rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .about-text .section-title {
+            margin-bottom: 1.5rem;
+        }
+        .about-text p {
+            color: var(--text-medium);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+        .about-ethiopian {
+            font-family: 'Noto Serif Ethiopic', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* ─── CONTACT SECTION ──────────────── */
+        .contact-section {
+            background: var(--espresso);
+            color: var(--cream);
+        }
+        .contact-section .section-label {
+            color: var(--gold-light);
+        }
+        .contact-section .section-title {
+            color: var(--cream);
+        }
+        .contact-section .section-subtitle {
+            color: var(--cream-dark);
+            opacity: 0.8;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem 1.3rem;
+            border-radius: 12px;
+            border: 1.5px solid rgba(245, 240, 232, 0.2);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            resize: vertical;
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 4px rgba(200, 164, 92, 0.08);
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(245, 240, 232, 0.4);
+     }
+        .contact-form textarea {
+            min-height: 140px;
+        }
+        .contact-form .btn-primary {
+            align-self: flex-start;
+            font-size: 0.85rem;
+            padding: 0.9rem 2.2rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-info-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(200, 164, 92, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .contact-info-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 0.2rem;
+        }
+        .contact-info-item p {
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.7);
+            line-height: 1.5;
+        }
+
+        /* ─── FOOTER ───────────────────────── */
+        .footer {
+            background: #0d0502;
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid rgba(200, 164, 92, 0.1);
+        }
+        .footer-brand {
+            font-family: 'Noto Serif Ethiopic', 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+        .footer p {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 232, 0.5);
+            letter-spacing: 0.04em;
+        }
+        .footer .gold-dot {
+            color: var(--gold);
+        }
+
+        /* ─── RESPONSIVE ──────────────────── */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 6rem 2rem 3rem;
+            }
+            .hero-3d-container {
+                height: 400px;
+                order: -1;
+            }
+            .hero-content {
+                text-align: center;
+                padding-right: 0;
+            }
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+            .nav.scrolled {
+                padding: 0.7rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(26, 12, 6, 0.96);
+                backdrop-filter: blur(20px);
+                padding: 1.5rem;
+                gap: 1.2rem;
+                border-top: 1px solid rgba(200, 164, 92, 0.15);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .hero-3d-container {
+                height: 320px;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-visual {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .about-stat-card .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-3d-container {
+                height: 260px;
+            }
+            .hero-title {
+                font-size: 1.9rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .about-visual {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ NAVIGATION ═══════════ -->
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav-brand">ጥርኝ <span class="dot"></span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#products">Our Coffees</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Inquire</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ═══════════ HERO SECTION ═══════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-eyebrow">Ethiopia's Finest Export</span>
+                <h1 class="hero-title">
+                    From the<br>Highlands of<br><span class="highlight">Ethiopia</span>
+                </h1>
+                <p class="hero-subtitle">Single-origin specialty coffee, curated for the world.</p>
+                <p class="hero-description">
+                    ጥርኝ brings you the rarest, hand-selected Arabica beans from Ethiopia's most celebrated
+                    growing regions — Yirgacheffe, Sidamo, Harrar, and Limu. Every bean tells a story of
+                    altitude, tradition, and unparalleled flavor.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">
+                        Explore Collection
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="#about" class="btn btn-outline">Our Story</a>
+                </div>
+            </div>
+            <div class="hero-3d-container" id="threeContainer">
+                <div class="hero-3d-hint">Drag to explore · Scroll to rotate</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PRODUCTS SECTION ═══════ -->
+    <section class="section products-section" id="products">
+        <div class="section-inner">
+            <span class="section-label">Our Collection</span>
+            <h2 class="section-title">Exceptional Single-Origin Lots</h2>
+            <p class="section-subtitle">
+                Each region imparts a distinct character — from bright, floral Yirgacheffe
+                to bold, wine-like Harrar. Discover the diversity of Ethiopian coffee.
+            </p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <div class="gradient-bg bg-yirgacheffe"></div>
+                        <span class="overlay-tag">Flagship</span>
+                    </div>
+                    <div class="product-card-body">
+                        <span class="origin">Yirgacheffe Region</span>
+                        <h3>Yirgacheffe AAA</h3>
+                        <p class="notes">Bright acidity with jasmine, bergamot, and lemon zest. A clean,
+                            tea-like body with a lingering sweet finish.</p>
+                        <div class="tasting-row">
+                            <span class="tasting-tag">Jasmine</span>
+                            <span class="tasting-tag">Bergamot</span>
+                            <span class="tasting-tag">Lemon</span>
+                            <span class="tasting-tag">Floral</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <div class="gradient-bg bg-sidamo"></div>
+                        <span class="overlay-tag">Premium</span>
+                    </div>
+                    <div class="product-card-body">
+                        <span class="origin">Sidamo Region</span>
+                        <h3>Sidamo Grand Cru</h3>
+                        <p class="notes">Rich and full-bodied with dark chocolate, blueberry, and a
+                            wine-like complexity. Velvety mouthfeel.</p>
+                        <div class="tasting-row">
+                            <span class="tasting-tag">Dark Chocolate</span>
+                            <span class="tasting-tag">Blueberry</span>
+                            <span class="tasting-tag">Wine</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <div class="gradient-bg bg-harrar"></div>
+                        <span class="overlay-tag">Bold</span>
+                    </div>
+                    <div class="product-card-body">
+                        <span class="origin">Harrar Region</span>
+                        <h3>Harrar Mocha</h3>
+                        <p class="notes">Intense and fruity with wild blueberry, dark cacao, and exotic
+                            spice. A powerful, unforgettable cup.</p>
+                        <div class="tasting-row">
+                            <span class="tasting-tag">Blueberry</span>
+                            <span class="tasting-tag">Cacao</span>
+                            <span class="tasting-tag">Spice</span>
+                            <span class="tasting-tag">Bold</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <div class="gradient-bg bg-limu"></div>
+                        <span class="overlay-tag">Balanced</span>
+                    </div>
+                    <div class="product-card-body">
+                        <span class="origin">Limu Region</span>
+                        <h3>Limu Reserve</h3>
+                        <p class="notes">Balanced and sweet with caramel, stone fruit, and subtle spice.
+                            Smooth body with a clean, crisp finish.</p>
+                        <div class="tasting-row">
+                            <span class="tasting-tag">Caramel</span>
+                            <span class="tasting-tag">Stone Fruit</span>
+                            <span class="tasting-tag">Spice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- ═══════════ ABOUT SECTION ══════════ -->
+    <section class="section about-section" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-visual">
+                    <div class="about-stat-card">
+                        <div class="stat-number">2,200<span style="font-size:1.2rem;">m</span></div>
+                        <div class="stat-label">Average Altitude</div>
+                    </div>
+                    <div class="about-stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Growing Regions</div>
+                    </div>
+                    <div class="about-stat-card">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Years of Heritage</div>
+                    </div>
+                    <div class="about-stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Arabica Heirloom</div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <span class="section-label">Our Heritage</span>
+                    <h2 class="section-title">Rooted in the Birthplace of Coffee</h2>
+                    <p>
+                        Ethiopia is where coffee was first discovered — and it remains the heart of the
+                        world's finest Arabica. At <strong>ጥርኝ</strong>, we work directly with
+                        smallholder farmers across four legendary regions, ensuring ethical sourcing,
+                        impeccable quality, and a direct connection from the highland farm to your cup.
+                    </p>
+                    <p>
+                        Our name — <em>ጥርኝ</em> (T'irign) — means "pure" in Amharic. It reflects our
+                        commitment to unblended, single-origin excellence. Every lot is hand-sorted,
+                        sun-dried on raised beds, and carefully processed to preserve the unique
+                        character of its origin.
+                    </p>
+                    <span class="about-ethiopian">ኢትዮጵያ የቡና መገኛ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CONTACT SECTION ════════ -->
+    <section class="section contact-section" id="contact">
+        <div class="section-inner">
+            <span class="section-label">Get In Touch</span>
+            <h2 class="section-title">Partner With Us</h2>
+            <p class="section-subtitle">
+                Whether you're a roaster, distributor, or specialty importer — we'd love to
+                discuss how ጥርኝ can supply your needs with exceptional Ethiopian coffee.
+            </p>
+            <div class="contact-grid">
+                <form class="contact-form" onsubmit="handleContact(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Company / Organization">
+                    <textarea placeholder="Tell us about your needs..."></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        Send Inquiry <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Head Office</h4>
+                            <p>Bole Subcity, Addis Ababa<br>Ethiopia</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>export@tirign-coffee.com<br>sales@tirign-coffee.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+251 11 234 5678<br>+251 91 234 5678</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+        <div class="footer-brand">ጥርኝ</div>
+        <p>Premium Ethiopian Coffee Export <span class="gold-dot">●</span> Established 1994</p>
+        <p style="margin-top:0.3rem;">&copy; 2026 ጥርኝ Coffee Export Co. All rights reserved.</p>
+    </footer>
+
+    <!-- ═══════════ THREE.JS CDN ═══════════ -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+ // ─── DOM ELEMENTS ─────────────────────
+        const container = document.getElementById('threeContainer');
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+        // ─── MOBILE MENU TOGGLE ──────────────
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ─── NAV SCROLL EFFECT ───────────────
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ─── CONTACT FORM HANDLER ────────────
+        window.handleContact = function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✓ Message Sent!';
+            btn.style.background = '#4a7c59';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+                e.target.reset();
+            }, 2500);
+        };
+
+        // ─── THREE.JS SCENE SETUP ────────────
+        const scene = new THREE.Scene();
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100);
+        camera.position.set(0, 0.15, 3.8);
+        camera.lookAt(0, 0.1, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        container.appendChild(renderer.domElement);
+
+        // ─── LIGHTING ────────────────────────
+        // Ambient
+        const ambientLight = new THREE.AmbientLight('#f5ead5', 0.8);
+        scene.add(ambientLight);
+
+        // Key light (warm)
+        const keyLight = new THREE.DirectionalLight('#fff8e7', 5.5);
+        keyLight.position.set(3, 2.5, 4);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 1024;
+        keyLight.shadow.mapSize.height = 1024;
+        keyLight.shadow.camera.near = 0.3;
+        keyLight.shadow.camera.far = 20;
+        keyLight.shadow.camera.left = -4;
+        keyLight.shadow.camera.right = 4;
+        keyLight.shadow.camera.top = 4;
+        keyLight.shadow.camera.bottom = -4;
+        keyLight.shadow.bias = -0.0001;
+        keyLight.shadow.normalBias = 0.02;
+        scene.add(keyLight);
+
+        // Fill light
+        const fillLight = new THREE.DirectionalLight('#d4c8f0', 1.6);
+        fillLight.position.set(-2.5, 1, -1.5);
+        scene.add(fillLight);
+
+        // Rim light
+        const rimLight = new THREE.DirectionalLight('#ffeacc', 3.5);
+        rimLight.position.set(0, 3, -2.5);
+        scene.add(rimLight);
+
+        // Accent point light on gold band
+        const accentLight = new THREE.PointLight('#ffd89b', 8, 3, 1.5);
+        accentLight.position.set(0.6, 0.05, 0.8);
+        scene.add(accentLight);
+
+        // Subtle bottom bounce light
+        const bounceLight = new THREE.PointLight('#8b6e4e', 2.5, 2.5, 2);
+        bounceLight.position.set(0, -1.2, 0.5);
+        scene.add(bounceLight);
+
+        // ─── MAIN GROUP ──────────────────────
+        const mainGroup = new THREE.Group();
+        scene.add(mainGroup);
+
+        // ─── COFFEE BAG MODEL ────────────────
+        const bagGroup = new THREE.Group();
+
+        // Bag body material
+        const bagBodyMat = new THREE.MeshStandardMaterial({
+            color: '#3d1f0f',
+            roughness: 0.55,
+            metalness: 0.05,
+        });
+
+        const bagBodyMatDark = new THREE.MeshStandardMaterial({
+            color: '#2a1207',
+            roughness: 0.6,
+            metalness: 0.05,
+        });
+
+        // Gold band material
+        const goldMat = new THREE.MeshStandardMaterial({
+            color: '#c8a45c',
+            roughness: 0.25,
+            metalness: 0.9,
+        });
+
+        // Silver clip material
+        const clipMat = new THREE.MeshStandardMaterial({
+            color: '#b8b8b8',
+            roughness: 0.3,
+            metalness: 0.95,
+        });
+
+        // Main bag body
+        const bagBody = new THREE.Mesh(
+            new THREE.BoxGeometry(0.52, 0.88, 0.28, 2, 2, 2),
+            bagBodyMat
+        );
+        bagBody.position.y = 0;
+        bagBody.castShadow = true;
+        bagBody.receiveShadow = true;
+        bagGroup.add(bagBody);
+
+        // Bottom slight flare (gusset suggestion)
+        const bottomFlare = new THREE.Mesh(
+            new THREE.BoxGeometry(0.56, 0.06, 0.32, 2, 2, 2),
+            bagBodyMatDark
+        );
+        bottomFlare.position.y = -0.44;
+        bottomFlare.castShadow = true;
+        bagGroup.add(bottomFlare);
+
+        // Gold band around middle
+        const goldBandFront = new THREE.Mesh(
+            new THREE.BoxGeometry(0.54, 0.1, 0.3, 4, 2, 2),
+            goldMat
+        );
+        goldBandFront.position.y = 0.02;
+        goldBandFront.castShadow = true;
+        bagGroup.add(goldBandFront);
+
+        // Top transition (narrowing)
+        const topTransition = new THREE.Mesh(
+            new THREE.BoxGeometry(0.44, 0.08, 0.22, 4, 2, 2),
+            bagBodyMat
+        );
+        topTransition.position.y = 0.47;
+        topTransition.castShadow = true;
+        bagGroup.add(topTransition);
+
+        // Folded top section
+        const foldedTop = new THREE.Mesh(
+            new THREE.BoxGeometry(0.34, 0.16, 0.1, 4, 2, 2),
+            bagBodyMatDark
+        );
+        foldedTop.position.y = 0.59;
+        foldedTop.rotation.z = -0.04;
+        foldedTop.castShadow = true;
+        bagGroup.add(foldedTop);
+
+        // Side flaps on the fold
+        const flapLeft = new THREE.Mesh(
+            new THREE.BoxGeometry(0.04, 0.13, 0.16, 2, 2, 2),
+            bagBodyMatDark
+        );
+        flapLeft.position.set(-0.17, 0.58, 0);
+        flapLeft.rotation.z = 0.3;
+        flapLeft.castShadow = true;
+        bagGroup.add(flapLeft);
+
+        const flapRight = new THREE.Mesh(
+            new THREE.BoxGeometry(0.04, 0.13, 0.16, 2, 2, 2),
+            bagBodyMatDark
+        );
+        flapRight.position.set(0.17, 0.58, 0);
+        flapRight.rotation.z = -0.3;
+        flapRight.castShadow = true;
+        bagGroup.add(flapRight);
+
+        // Tin tie clip at the very top
+        const clip = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.025, 0.025, 0.28, 16),
+            clipMat
+        );
+        clip.position.y = 0.67;
+        clip.rotation.z = Math.PI / 2;
+        clip.castShadow = true;
+        bagGroup.add(clip);
+
+        // Small clip detail nubs
+        const clipNubLeft = new THREE.Mesh(
+            new THREE.SphereGeometry(0.028, 12, 8),
+            clipMat
+        );
+        clipNubLeft.position.set(0, 0.67, -0.14);
+        bagGroup.add(clipNubLeft);
+
+        const clipNubRight = new THREE.Mesh(
+            new THREE.SphereGeometry(0.028, 12, 8),
+            clipMat
+        );
+        clipNubRight.position.set(0, 0.67, 0.14);
+        bagGroup.add(clipNubRight);
+
+        // ─── BRAND LABEL TEXTURE ──────────────
+        const labelCanvas = document.createElement('canvas');
+        labelCanvas.width = 512;
+        labelCanvas.height = 512;
+        const ctx = labelCanvas.getContext('2d');
+
+        // Background
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, 512);
+        bgGrad.addColorStop(0, '#3d1f0f');
+        bgGrad.addColorStop(0.5, '#2a1207');
+        bgGrad.addColorStop(1, '#3d1f0f');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 512, 512);
+
+        // Decorative border
+        ctx.strokeStyle = '#c8a45c';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(30, 30, 452, 452);
+        ctx.strokeStyle = 'rgba(200,164,92,0.4)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(42, 42, 428, 428);
+
+        // Brand name in Amharic
+        ctx.fillStyle = '#e2c278';
+        ctx.font = '600 120px "Noto Serif Ethiopic", "Nyala", serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('ጥርኝ', 256, 210);
+
+        // Gold line
+        ctx.strokeStyle = '#c8a45c';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(130, 270);
+        ctx.lineTo(382, 270);
+        ctx.stroke();
+
+        // Subtitle
+        ctx.fillStyle = '#d4af6e';
+        ctx.font = '500 32px "Playfair Display", "Inter", serif';
+        ctx.fillText('PREMIUM COFFEE', 256, 320);
+        ctx.fillStyle = 'rgba(212,175,110,0.7)';
+        ctx.font = '400 20px "Inter", sans-serif';
+        ctx.fillText('EST. 1994 · ETHIOPIA', 256, 360);
+
+        // Small diamond decoration
+        ctx.fillStyle = '#c8a45c';
+        ctx.beginPath();
+        ctx.moveTo(256, 400);
+        ctx.lineTo(270, 415);
+        ctx.lineTo(256, 430);
+        ctx.lineTo(242, 415);
+        ctx.closePath();
+        ctx.fill();
+
+        const labelTexture = new THREE.CanvasTexture(labelCanvas);
+        labelTexture.colorSpace = THREE.SRGBColorSpace;
+        labelTexture.minFilter = THREE.LinearMipmapLinearFilter;
+        labelTexture.magFilter = THREE.LinearFilter;
+        labelTexture.generateMipmaps = true;
+
+        // Label plane on the front of the bag
+        const labelPlane = new THREE.Mesh(
+            new THREE.PlaneGeometry(0.4, 0.52, 1, 1),
+            new THREE.MeshStandardMaterial({
+                map: labelTexture,
+                roughness: 0.5,
+                metalness: 0.05,
+                side: THREE.DoubleSide,
+            })
+        );
+        labelPlane.position.set(0, -0.05, 0.145);
+        bagGroup.add(labelPlane);
+
+        // Small "shadow" plane behind label on back
+        const backLabel = new THREE.Mesh(
+            new THREE.PlaneGeometry(0.36, 0.44, 1, 1),
+            new THREE.MeshStandardMaterial({
+                color: '#1a0a03',
+                roughness: 0.7,
+                metalness: 0,
+                side: THREE.DoubleSide,
+            })
+        );
+        backLabel.position.set(0, -0.05, -0.145);
+        bagGroup.add(backLabel);
+
+        mainGroup.add(bagGroup);
+ // ─── ORBITING COFFEE BEANS ────────────
+        const beansGroup = new THREE.Group();
+        mainGroup.add(beansGroup);
+
+        const beanGeom = new THREE.SphereGeometry(0.055, 16, 12);
+        // Flatten spheres to look bean-like
+        const beanScaleMatrix = new THREE.Matrix4();
+        // We'll scale each bean individually after creation
+
+        const beanMaterial = new THREE.MeshStandardMaterial({
+            color: '#2c1408',
+            roughness: 0.45,
+            metalness: 0.08,
+        });
+        const beanMaterialLight = new THREE.MeshStandardMaterial({
+            color: '#3d1f0f',
+            roughness: 0.5,
+            metalness: 0.05,
+        });
+
+        const beansData = [];
+        const beanCount = 14;
+
+        for (let i = 0; i < beanCount; i++) {
+            const mat = i % 3 === 0 ? beanMaterialLight : beanMaterial;
+            const bean = new THREE.Mesh(beanGeom, mat);
+
+            // Flatten to make bean-like ellipsoid
+            const flatness = 0.35 + Math.random() * 0.3;
+            bean.scale.set(1, flatness, 1);
+
+            // Random slight rotation for organic look
+            bean.rotation.set(
+                Math.random() * Math.PI * 2,
+                Math.random() * Math.PI * 2,
+                Math.random() * Math.PI * 2
+            );
+
+            bean.castShadow = true;
+            bean.receiveShadow = true;
+
+            // Orbit parameters
+            const orbitData = {
+                mesh: bean,
+                radius: 0.65 + Math.random() * 0.7,
+                speed: 0.3 + Math.random() * 0.9,
+                height: (Math.random() - 0.5) * 1.3,
+                phase: Math.random() * Math.PI * 2,
+                tilt: (Math.random() - 0.5) * 0.6,
+                bobAmp: 0.04 + Math.random() * 0.12,
+                bobSpeed: 0.8 + Math.random() * 1.5,
+                bobPhase: Math.random() * Math.PI * 2,
+                selfRotationSpeed: 0.3 + Math.random() * 1.2,
+                selfRotAxis: new THREE.Vector3(
+                    Math.random() - 0.5,
+                    Math.random() - 0.5,
+                    Math.random() - 0.5
+                ).normalize(),
+            };
+
+            beansData.push(orbitData);
+            beansGroup.add(bean);
+        }
+
+        // ─── AROMA PARTICLES ──────────────────
+        const particlesCount = 200;
+        const particlesGeom = new THREE.BufferGeometry();
+        const particlesPositions = new Float32Array(particlesCount * 3);
+        const particlesDataArr = [];
+
+        for (let i = 0; i < particlesCount; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 0.25 + Math.random() * 0.8;
+            const height = -0.5 + Math.random() * 1.8;
+
+            particlesPositions[i * 3] = Math.cos(angle) * radius;
+            particlesPositions[i * 3 + 1] = height;
+            particlesPositions[i * 3 + 2] = Math.sin(angle) * radius;
+
+            particlesDataArr.push({
+                baseX: particlesPositions[i * 3],
+                baseZ: particlesPositions[i * 3 + 2],
+                speed: 0.15 + Math.random() * 0.6,
+                amplitude: 0.3 + Math.random() * 0.9,
+                phase: Math.random() * Math.PI * 2,
+                lifePhase: Math.random() * Math.PI * 2,
+                lifeSpeed: 0.3 + Math.random() * 0.7,
+            });
+        }
+
+        particlesGeom.setAttribute('position', new THREE.BufferAttribute(particlesPositions, 3));
+
+        const particlesMat = new THREE.PointsMaterial({
+            color: '#d4b896',
+            size: 0.018,
+            transparent: true,
+            opacity: 0.55,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+        });
+
+        const particles = new THREE.Points(particlesGeom, particlesMat);
+        mainGroup.add(particles);
+
+        // Second particle layer (finer, higher)
+        const particlesGeom2 = new THREE.BufferGeometry();
+        const particlesPositions2 = new Float32Array(120 * 3);
+        const particlesDataArr2 = [];
+
+        for (let i = 0; i < 120; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 0.2 + Math.random() * 0.6;
+            const height = 0.2 + Math.random() * 2.0;
+
+            particlesPositions2[i * 3] = Math.cos(angle) * radius;
+            particlesPositions2[i * 3 + 1] = height;
+            particlesPositions2[i * 3 + 2] = Math.sin(angle) * radius;
+
+            particlesDataArr2.push({
+                baseX: particlesPositions2[i * 3],
+                baseZ: particlesPositions2[i * 3 + 2],
+                speed: 0.2 + Math.random() * 0.5,
+                amplitude: 0.4 + Math.random() * 0.8,
+                phase: Math.random() * Math.PI * 2,
+                lifePhase: Math.random() * Math.PI * 2,
+                lifeSpeed: 0.4 + Math.random() * 0.6,
+            });
+        }
+
+        particlesGeom2.setAttribute('position', new THREE.BufferAttribute(particlesPositions2, 3));
+        const particlesMat2 = new THREE.PointsMaterial({
+            color: '#e8d5b8',
+            size: 0.012,
+            transparent: true,
+            opacity: 0.4,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+        });
+        const particles2 = new THREE.Points(particlesGeom2, particlesMat2);
+        mainGroup.add(particles2);
+
+        // ─── SUBTLE GROUND SHADOW ────────────
+        const shadowPlane = new THREE.Mesh(
+            new THREE.PlaneGeometry(2.5, 2.5),
+            new THREE.ShadowMaterial({ opacity: 0.25 })
+        );
+        shadowPlane.rotation.x = -Math.PI / 2;
+        shadowPlane.position.y = -0.7;
+        shadowPlane.receiveShadow = true;
+        scene.add(shadowPlane);
+
+        // ─── MOUSE / TOUCH INTERACTION ────────
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetMouseX = 0;
+        let targetMouseY = 0;
+        let isDragging = false;
+        let prevMouseX = 0;
+        let prevMouseY = 0;
+        let dragVelocityX = 0;
+        let dragVelocityY = 0;
+        let autoRotateSpeed = 0.35;
+
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            prevMouseX = e.clientX;
+            prevMouseY = e.clientY;
+            container.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const dx = e.clientX - prevMouseX;
+                const dy = e.clientY - prevMouseY;
+                dragVelocityX = dx * 0.005;
+                dragVelocityY = dy * 0.005;
+                targetMouseX += dx * 0.005;
+                targetMouseY += dy * 0.005;
+                prevMouseX = e.clientX;
+                prevMouseY = e.clientY;
+            } else {
+                // Hover effect
+                const rect = container.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                targetMouseX = (e.clientX - cx) / rect.width * 1.2;
+                targetMouseY = (e.clientY - cy) / rect.height * 0.8;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+        });
+
+        // Touch support
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                prevMouseX = e.touches[0].clientX;
+                prevMouseY = e.touches[0].clientY;
+                container.style.cursor = 'grabbing';
+            }
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            if (isDragging && e.touches.length === 1) {
+                const dx = e.touches[0].clientX - prevMouseX;
+                const dy = e.touches[0].clientY - prevMouseY;
+                dragVelocityX = dx * 0.005;
+                dragVelocityY = dy * 0.005;
+                targetMouseX += dx * 0.005;
+                targetMouseY += dy * 0.005;
+                prevMouseX = e.touches[0].clientX;
+                prevMouseY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        container.addEventListener('touchend', () => {
+            isDragging = false;
+            container.style.cursor = 'grab';
+        });
+
+        // Scroll-based rotation
+        window.addEventListener('scroll', () => {
+            const heroSection = document.getElementById('hero');
+            const rect = heroSection.getBoundingClientRect();
+            const scrollProgress = Math.max(0, Math.min(1, -rect.top / rect.height));
+            targetMouseY += scrollProgress * 0.04;
+            autoRotateSpeed = 0.35 + scrollProgress * 0.5;
+        });
+
+        // ─── ANIMATION LOOP ──────────────────
+        const clock = new THREE.Clock();
+
+        function animate(timestamp) {
+            requestAnimationFrame(animate);
+
+            const dt = Math.min(clock.getDelta(), 0.1);
+            const time = timestamp * 0.001;
+
+            // Smooth mouse following
+            mouseX += (targetMouseX - mouseX) * 3.5 * dt;
+            mouseY += (targetMouseY - mouseY) * 3.5 * dt;
+
+            // Apply drag velocity decay
+            if (!isDragging) {
+                dragVelocityX *= Math.exp(-4 * dt);
+                dragVelocityY *= Math.exp(-4 * dt);
+                targetMouseX += dragVelocityX * dt * 0.5;
+                targetMouseY += dragVelocityY * dt * 0.5;
+            }
+
+            // Rotate main group
+            const baseRotationY = time * autoRotateSpeed;
+            mainGroup.rotation.y = baseRotationY + mouseX;
+            mainGroup.rotation.x = mouseY * 0.5;
+            mainGroup.rotation.z = mouseX * 0.15;
+
+            // Gentle bobbing
+            const bob = Math.sin(time * 0.7) * 0.04;
+            mainGroup.position.y = bob;
+
+            // Update orbiting beans
+            beansData.forEach((data) => {
+                const angle = data.phase + time * data.speed;
+                const r = data.radius + Math.sin(time * data.bobSpeed + data.bobPhase) * data.bobAmp;
+                const x = Math.cos(angle) * r;
+                const z = Math.sin(angle) * r;
+                const y = data.height + Math.cos(time * data.bobSpeed * 1.3 + data.bobPhase) * data.bobAmp * 1.5;
+
+                data.mesh.position.set(x, y, z);
+
+                // Self-rotation
+                data.mesh.rotateOnWorldAxis(data.selfRotAxis, data.selfRotationSpeed * dt);
+
+                // Subtle tilt toward center
+                data.mesh.lookAt(new THREE.Vector3(x * 0.3, y, z * 0.3));
+            });
+
+            // Update aroma particles
+            const posArray = particlesGeom.attributes.position.array;
+            for (let i = 0; i < particlesCount; i++) {
+                const pd = particlesDataArr[i];
+                const lifeCycle = Math.sin(time * pd.lifeSpeed + pd.lifePhase);
+                const opacityCycle = (lifeCycle + 1) / 2;
+
+                posArray[i * 3] = pd.baseX + Math.sin(time * pd.speed + pd.phase) * pd.amplitude * 0.4;
+                posArray[i * 3 + 1] += pd.speed * 0.25 * dt;
+                posArray[i * 3 + 2] = pd.baseZ + Math.cos(time * pd.speed + pd.phase) * pd.amplitude * 0.4;
+
+                // Reset particles that go too high
+                if (posArray[i * 3 + 1] > 1.6) {
+                    posArray[i * 3 + 1] = -0.6 - Math.random() * 0.4;
+                    posArray[i * 3] = pd.baseX + (Math.random() - 0.5) * 0.5;
+                    posArray[i * 3 + 2] = pd.baseZ + (Math.random() - 0.5) * 0.5;
+                }
+            }
+            particlesGeom.attributes.position.needsUpdate = true;
+            particlesMat.opacity = 0.35 + Math.sin(time * 0.5) * 0.1;
+
+            // Update second particle layer
+            const posArray2 = particlesGeom2.attributes.position.array;
+            for (let i = 0; i < 120; i++) {
+                const pd = particlesDataArr2[i];
+                posArray2[i * 3 + 1] += pd.speed * 0.3 * dt;
+                posArray2[i * 3] = pd.baseX + Math.sin(time * pd.speed + pd.phase) * pd.amplitude * 0.3;
+                posArray2[i * 3 + 2] = pd.baseZ + Math.cos(time * pd.speed + pd.phase) * pd.amplitude * 0.3;
+
+                if (posArray2[i * 3 + 1] > 2.2) {
+                    posArray2[i * 3 + 1] = 0.1 - Math.random() * 0.3;
+                }
+            }
+            particlesGeom2.attributes.position.needsUpdate = true;
+
+            // Animate accent light intensity
+            accentLight.intensity = 7 + Math.sin(time * 1.3) * 1.5;
+
+            // Render
+            renderer.render(scene, camera);
+        }
+
+// ─── RESIZE HANDLER ──────────────────
+        function onResize() {
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            camera.aspect = w / Math.max(h, 1);
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        }
+        window.addEventListener('resize', onResize);
+
+        // ─── START ───────────────────────────
+        container.style.cursor = 'grab';
+        requestAnimationFrame(animate);
+
+        console.log('☕ ጥርኝ — Premium Ethiopian Coffee Export');
+        console.log('   3D scene initialized successfully.');
+        console.log('   Drag to rotate · Scroll to explore');
+    </script>
+</body>
+</html>
